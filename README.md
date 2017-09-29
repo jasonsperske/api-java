@@ -45,3 +45,5 @@ assert response.body.equals("6000");
 If you have compiled the source files with the `test` source files you can run the JUnit tests with the following command:
 
     java -jar lib/junit-platform-console-standalone-1.0.0.jar -classpath lib/junit-jupiter-api-5.0.0.jar:lib/junit-jupiter-engine-5.0.0.jar:lib/apiguardian-api-1.0.0.jar:lib/okio-1.13.0.jar:lib/okhttp-3.9.0.jar:package/io.readme-0.0.1.jar --scan-class-path
+
+These tests wil use an `API_KEY` that you must provide in a `readme.properties` file (included in `.gitignore` so you don't accidentally check in your API key).  If you run the JUnit tests without this file, or wihtout this key, it will print a error explaining what is missing.
