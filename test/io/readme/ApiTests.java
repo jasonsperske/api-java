@@ -3,12 +3,22 @@ package io.readme;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class ApiTests {
-  private String API_KEY = "[YOUR API_KEY]";
+  private static String API_KEY;
+
+  static {
+    try {
+      Properties config = ApiUtils.loadProperties("readme.properties");
+      API_KEY = config.getProperty("API_KEY");
+    } catch(IOException ex) {
+      System.err.println("Missing readme.properties");
+    }
+  }
 
   @Test
   void shouldCallKnownApi() throws IOException {

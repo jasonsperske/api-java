@@ -3,6 +3,7 @@
 build/
 package/
 source.txt
+readme.properties
 
 .DS_Store
 

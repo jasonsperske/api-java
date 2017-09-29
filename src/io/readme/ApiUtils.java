@@ -4,6 +4,10 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.IOException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.security.cert.PKIXParameters;
@@ -11,8 +15,10 @@ import java.security.cert.TrustAnchor;
 import java.security.cert.X509Certificate;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
+
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Properties;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -101,6 +107,14 @@ public class ApiUtils {
       return keyStore;
     } catch (IOException e) {
       throw new AssertionError(e);
+    }
+  }
+
+  public static Properties loadProperties(String filename) throws IOException {
+    try (InputStream stream = Files.newInputStream(Paths.get(filename))) {
+      Properties config = new Properties();
+      config.load(stream);
+      return config;
     }
   }
 }
