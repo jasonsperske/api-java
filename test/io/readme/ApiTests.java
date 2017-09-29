@@ -15,6 +15,9 @@ class ApiTests {
     try {
       Properties config = ApiUtils.loadProperties("readme.properties");
       API_KEY = config.getProperty("API_KEY");
+      if(API_KEY == null) {
+        System.err.println("readme.properties is missing a API_KEY value!");
+      }
     } catch(IOException ex) {
       System.err.println("Missing readme.properties");
     }
