@@ -1,5 +1,10 @@
 # Compiled class file
 *.class
+build/
+package/
+source.txt
+
+.DS_Store
 
 # Log file
 *.log
@@ -12,6 +17,7 @@
 
 # Package Files #
 *.jar
+!lib/*.jar
 *.war
 *.ear
 *.zip
