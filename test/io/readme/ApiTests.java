@@ -27,5 +27,25 @@ class ApiTests {
 
     assertEquals(200, res.statusCode);
     assertEquals("6", res.body);
+
+    res = api.run("math", "multiply", "{\"numbers\": [10,20,30]}");
+    assertEquals(200, res.statusCode);
+    assertEquals("6000", res.body);
+  }
+
+  @Test
+  void shouldFailToCallKnownInvalidApi() throws IOException {
+    Api api = new Api(API_KEY);
+    ApiResponse res = api.run("deep_thought", "ultimate_question", "{\"number\": 42}");
+
+    assertEquals(404, res.statusCode);
+  }
+
+  @Test
+  void shouldFailToCallKnownInvalidApiFunction() throws IOException {
+    Api api = new Api(API_KEY);
+    ApiResponse res = api.run("math", "translate", "{\"numbers\": [1,2,3]}");
+
+    assertEquals(400, res.statusCode);
   }
 }
